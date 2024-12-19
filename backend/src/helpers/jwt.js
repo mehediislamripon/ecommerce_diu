@@ -28,10 +28,15 @@ const signAccessToken = (data) => {
 const verifyAccessToken = (req, res, next) => {
 	const authorizationToken = req.headers["authorization"];
 	if (!authorizationToken) {
-		next(Boom.unauthorized());
+		return next(Boom.unauthorized("No token provided"));
 	}
 
-	JWT.verify(authorizationToken, process.env.JWT_SECRET, (err, payload) => {
+	const token = authorizationToken.split(" ")[1];
+	if (!token) {
+		return next(Boom.unauthorized("Malformed token"));
+	}
+
+	JWT.verify(token, process.env.JWT_SECRET, (err, payload) => {
 		if (err) {
 			return next(
 				Boom.unauthorized(
