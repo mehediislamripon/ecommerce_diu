@@ -22,7 +22,6 @@ function NewProduct() {
   });
 
   const handleSubmit = async (values, bag) => {
-    console.log(values);
     message.loading({ content: "Loading...", key: "product_update" });
 
     const newValues = {
@@ -37,6 +36,21 @@ function NewProduct() {
           key: "product_update",
           duration: 2,
         });
+      },
+      onError: (error) => {
+        if (error.response.status === 401) {
+          message.error({
+            content: "Unauthorized: Malformed token",
+            key: "product_update",
+            duration: 2,
+          });
+        } else {
+          message.error({
+            content: "An error occurred",
+            key: "product_update",
+            duration: 2,
+          });
+        }
       },
     });
   };

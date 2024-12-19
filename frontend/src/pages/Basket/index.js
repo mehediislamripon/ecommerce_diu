@@ -58,7 +58,7 @@ function Basket() {
               <li key={item._id} style={({ margin: 20 }, { width: "25%" })}>
                 <Link to={`/product/${item._id}`}>
                   <Text fontSize="22">
-                    {item.title} - {item.price} $
+                    {item.title} - {item.price} BDT
                   </Text>
                   <Image
                     htmlWidth={300}
@@ -82,7 +82,7 @@ function Basket() {
             ))}
           </ul>
           <Box mt="10">
-            <Text fontSize="22">Total: {total}$</Text>
+            <Text fontSize="22">Total: {total} BDT</Text>
           </Box>
           {/* Order kısmı buradan sonra başlamaktadır. */}
           <Button onClick={onOpen} colorScheme="whatsapp" mt={4}>

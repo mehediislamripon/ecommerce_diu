@@ -1,8 +1,14 @@
+import { message } from "antd";
 import axios from "axios";
 
 axios.interceptors.request.use(
    function (config) {
-      const { origin } = new URL(config.url);
+      let origin;
+      try {
+         origin = new URL(config.url).origin;
+      } catch (error) {
+         origin = window.location.origin;
+      }
 
       const allowedOrigins = [process.env.REACT_APP_BASE_ENDPOINT];
       const token = localStorage.getItem("access-token");
@@ -82,6 +88,13 @@ export const postOrder = async (input) => {
       `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
       input
    );
+
+   message.success({
+      content: "The order is successfully created",
+      key: "order_update",
+      duration: 2,
+   });
+
    return data;
 };
 

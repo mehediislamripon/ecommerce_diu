@@ -38,7 +38,7 @@ function Cards({ item }) {
             <Heading size="md">{item.title}</Heading>
             <Text>{moment(item.createdAt).format("DD/MM/YYYY")}</Text>
             <Text color="blue.600" fontSize="2xl">
-              {item.price}$
+              {item.price} BDT
             </Text>
           </Stack>
         </CardBody>

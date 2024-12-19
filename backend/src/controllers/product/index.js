@@ -3,6 +3,7 @@ import Boom from "boom";
 import ProductSchema from "./validations";
 
 const Create = async (req, res, next) => {
+  console.log("🚀 ~ Create ~ req:", req)
   const input = req.body;
   const { error } = ProductSchema.validate(input);
 
